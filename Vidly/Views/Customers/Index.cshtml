@@ -4,18 +4,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@Html.ActionLink("New Custom", "New", "Customers", new {@class="btn btn-primary"}) 
+
 <h2>Customers</h2>
 @if (!Model.Any())
 {
-    <text>No customers yet.</text>
+    <p>No customers yet.</p>
 }
 else
 {
-    <ul>
-        @foreach (var customer in Model)
-        {
-            @*<li>@customer.Name</li>*@
-            <li>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</li> 
-        }
-    </ul>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Discount Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+                    <td>@customer.MembershipType.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

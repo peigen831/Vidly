@@ -1,16 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Web.Mvc;
+using System.Linq;
 using Vidly.Models;
 using Vidly.ViewModels;
+
 
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        // GET: Movie
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        public ActionResult Save(Movie movie)
+        {
+            if(movie.Id == 0)
+                _context.Movies.Add(movie);
+            //else
+            //{
+            //    var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
+            //}
+            _context.SaveChanges();
+            return  RedirectToAction ("Index", "Movies");
+        }
+
+        public ActionResult New()
+        {
+            var genre = _context.Genres.ToList();
+            var viewModel = new MovieViewModel()
+            {
+                Genre = genre
+            };
+            return View("MovieForm", viewModel);
+        }
+
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "JinWo!" };
@@ -23,8 +55,6 @@ namespace Vidly.Controllers
             var viewModel = new RandomMovieViewModel { Movie = movie, Customers = customers};
             
             return View(viewModel);
-            //return new EmptyResult();
-            //return RedirectToAction("Index", "Home",  new{ page = 1, sortBy = "name"});
         }
 
         public ActionResult Edit(int movieId)
@@ -38,23 +68,29 @@ namespace Vidly.Controllers
             return Content($"{year}/{month}");
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public ActionResult Details(int id)
         {
-            var movies = GetMovies();
-            return View(movies);
-            //if (!pageIndex.HasValue)
-            //    pageIndex = 1;
-            //if (String.IsNullOrWhiteSpace(sortBy))
-            //    sortBy = "Name";
-            //return Content(String.Format($"pageIndex={pageIndex}&sortBy={sortBy}"));
+            var movie = _context.Movies.Include(c => c.Genre).SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+            return View(movie);
         }
 
-        private IEnumerable<Movie> GetMovies()
+        public ActionResult Index(int? pageIndex, string sortBy)
         {
-            return new List<Movie> {
-                new Movie{ Id = 1, Name ="Along with Gods" },
-                new Movie{ Id = 2, Name ="KongFu Panda" },
-            };
+            var movies = _context.Movies.Include(c => c.Genre).ToList();
+            return View(movies);
         }
+
+
+
+        //return new EmptyResult();
+        //return RedirectToAction("Index", "Home",  new{ page = 1, sortBy = "name"});
+
+        //if (!pageIndex.HasValue)
+        //    pageIndex = 1;
+        //if (String.IsNullOrWhiteSpace(sortBy))
+        //    sortBy = "Name";
+        //return Content(String.Format($"pageIndex={pageIndex}&sortBy={sortBy}"));
     }
 }
