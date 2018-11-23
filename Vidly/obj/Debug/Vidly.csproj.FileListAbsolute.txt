@@ -141,3 +141,5 @@ D:\C# project\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddCustomerBirthday.resourc
 D:\C# project\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddMovieGenre.resources
 D:\C# project\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateGenre.resources
 D:\C# project\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddMovieGenreId.resources
+D:\C# project\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddMovieGenreId1.resources
+D:\C# project\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddMovieValidation.resources

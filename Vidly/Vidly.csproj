@@ -242,6 +242,14 @@
     <Compile Include="Migrations\201811181424263_AddMovieGenreId.Designer.cs">
       <DependentUpon>201811181424263_AddMovieGenreId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811191544008_AddMovieGenreId1.cs" />
+    <Compile Include="Migrations\201811191544008_AddMovieGenreId1.Designer.cs">
+      <DependentUpon>201811191544008_AddMovieGenreId1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811231551349_AddMovieValidation.cs" />
+    <Compile Include="Migrations\201811231551349_AddMovieValidation.Designer.cs">
+      <DependentUpon>201811231551349_AddMovieValidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -249,7 +257,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\MembershipValidate.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\NumberInStockValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerForViewModel.cs" />
@@ -369,6 +379,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811181424263_AddMovieGenreId.resx">
       <DependentUpon>201811181424263_AddMovieGenreId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191544008_AddMovieGenreId1.resx">
+      <DependentUpon>201811191544008_AddMovieGenreId1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231551349_AddMovieValidation.resx">
+      <DependentUpon>201811231551349_AddMovieValidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

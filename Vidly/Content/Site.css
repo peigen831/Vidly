@@ -3,6 +3,14 @@
     padding-bottom: 20px;
 }
 
+.field-validation-error{
+    color:red;
+}
+
+.input-validation-error{
+    border:2px solid red;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
